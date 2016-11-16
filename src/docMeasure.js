@@ -137,7 +137,7 @@ DocMeasure.prototype.measureNode = function(node) {
 				margin = convertMargin(flattenedStyleArray.margin);
 			}
 		}
-		
+
 		margin = processSingleMargins(node, margin);
 
 		if(node.margin){
@@ -306,10 +306,6 @@ DocMeasure.prototype.measureTable = function(node) {
 		for(row = 0, rows = node.table.body.length; row < rows; row++) {
 			var rowData = node.table.body[row];
 			var data = rowData[col];
-			if(data === undefined){
-				console.error('Malformed table row ', rowData, 'in node ', node);
-				throw 'Malformed table row, a cell is undefined.';
-			}
 			if (!data._span) {
 				var _this = this;
 				data = rowData[col] = this.styleStack.auto(data, measureCb(this, data));
@@ -362,7 +358,8 @@ DocMeasure.prototype.measureTable = function(node) {
 			paddingLeft: function(i, node) { return 4; }, //i && 4 || 0; },
 			paddingRight: function(i, node) { return 4; }, //(i < node.table.widths.length - 1) ? 4 : 0; },
 			paddingTop: function(i, node) { return 2; },
-			paddingBottom: function(i, node) { return 2; }
+			paddingBottom: function(i, node) { return 2; },
+			defaultBorder: true
 		};
 
 		return pack(defaultLayout, layout);
