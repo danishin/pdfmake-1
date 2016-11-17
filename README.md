@@ -225,7 +225,50 @@ var docDefinition = {
 ```
 
 
-
+For each cell borders:
+```js
+	table: {
+				body: [
+					[
+						{
+							border: [false, true, false, false],
+							fillColor: '#eeeeee',
+							text: 'border:\n[false, true, false, false]'
+						},...
+					]
+				]
+			}
+		layout: {
+				defaultBorder: false,
+			}	
+```
+For all borders:
+```js
+layout: {
+				defaultBorder: false,
+			}
+```			
+			or with control... more examples see in playground
+```js			
+layout: {
+														hLineWidth: function(i, node) {
+																return (i === 0 || i === node.table.body.length) ? 2 : 1;
+														},
+														vLineWidth: function(i, node) {
+																return (i === 0 || i === node.table.widths.length) ? 2 : 1;
+														},
+														hLineColor: function(i, node) {
+																return (i === 0 || i === node.table.body.length) ? 'black' : 'gray';
+														},
+														vLineColor: function(i, node) {
+																return (i === 0 || i === node.table.widths.length) ? 'black' : 'gray';
+														},
+														// paddingLeft: function(i, node) { return 4; },
+														// paddingRight: function(i, node) { return 4; },
+														// paddingTop: function(i, node) { return 2; },
+														// paddingBottom: function(i, node) { return 2; }
+						}
+```	
 All concepts related to tables are covered by TABLES example in playground.
 
 #### Lists
